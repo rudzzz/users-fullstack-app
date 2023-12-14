@@ -23,7 +23,7 @@ This is a full-stack web application that allows users to perform CRUD (Create, 
 
 - **Frontend:**
   - React
-  - Material-UI for UI components
+  - Axios for API communication
 
 - **Database:**
   - MySQL
