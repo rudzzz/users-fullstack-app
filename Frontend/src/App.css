@@ -6,6 +6,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
+:root{
+  --blue: rgb(56, 96, 206);
+  --green: rgb(28, 158, 35);
+  --red: rgb(212, 38, 38)
+}
+
 .navBar{
   display: flex;
   justify-content: space-between;
@@ -52,6 +58,30 @@
   text-align: center;
 }
 
+.container button{
+  margin-right: 10px;
+  padding: 11px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.actionsBtn{
+  max-width: 240px;
+}
+
+.viewBtn{
+  background-color: var(--blue);
+}
+
+.editBtn{
+  background-color: var(--green);
+}
+
+.deleteBtn{
+  background-color: var(--red);
+}
+
 .form{
   margin-top: 15px;
   max-width: 400px;
@@ -85,22 +115,14 @@
   justify-content: right;
 }
 
-.formBtn button{
-  margin-right: 10px;
-  padding: 11px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  color: #fff;
-}
-
 .formBtn button:hover{
   cursor: pointer;
 }
 
 .cancel-btn{
-  background-color: red;
+  background-color: var(--red);
 }
 
 .save-btn{
-  background-color: green;
+  background-color: var(--green);
 }

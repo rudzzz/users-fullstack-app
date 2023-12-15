@@ -31,10 +31,10 @@ const Home = () => {
                                 <td>{user.id}</td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
-                                <td>
-                                    <button type='button'>View</button>
-                                    <button type='button'>Edit</button>
-                                    <button type='button'>Delete</button>
+                                <td className='actionsBtn'>
+                                    <button className='viewBtn' type='button'>View</button>
+                                    <button className='editBtn' type='button'>Edit</button>
+                                    <button className='deleteBtn' type='button'>Delete</button>
                                 </td>
                             </tr>
                         ))
