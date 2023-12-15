@@ -37,4 +37,30 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@RequestBody User user, @PathVariable Long id) {
+        Optional<User> optionalExistingUser = userRepository.findById(id);
+
+        if (optionalExistingUser.isPresent()) {
+            User existingUser = optionalExistingUser.get();
+            existingUser.setName(user.getName());
+            existingUser.setEmail(user.getEmail());
+            userRepository.save(existingUser);
+            return ResponseEntity.ok(existingUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        if(!userRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        } else {
+            userRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+    }
+
 }
