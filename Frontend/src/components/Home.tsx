@@ -32,8 +32,9 @@ const Home = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>
-                                    <button>Edit</button>
-                                    <button>Delete</button>
+                                    <button type='button'>View</button>
+                                    <button type='button'>Edit</button>
+                                    <button type='button'>Delete</button>
                                 </td>
                             </tr>
                         ))
