@@ -1,16 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { fetchUserData, formatDateForm } from "../functions.js"
 
 const Form = () => {
     const navigate = useNavigate();
     const { id } = useParams();
-
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-
-        return date.toISOString().split("T")[0];
-    }
 
     const [user, setUser] = useState({
         name: "",
@@ -21,21 +16,16 @@ const Form = () => {
     });
 
     useEffect( () => {
-       const fetchUserData = async () => {
-            try{
-                if(id){
-                    const response = await axios.get(`http://localhost:8080/users/${id}`);
-                    setUser({
-                        ...response.data,
-                        dateOfBirth: formatDate(response.data.dateOfBirth),
-                    });
-                }
-            } catch(error){
-                alert(`Error fetching user data: ${error}`);
-            }
+       const fetchData = async () => {
+           const data = await fetchUserData(id);
+           console.log('dataaa: ', data);
+           setUser({
+            ...data,
+            dateOfBirth: formatDateForm(data.dateOfBirth)
+        });
        };
 
-       fetchUserData();
+       fetchData();
 
     }, [id]);
 

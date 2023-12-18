@@ -11,7 +11,12 @@ export const fetchUserData = async (id) => {
     }
 };
 
-export const formatDate = (dateString) => {
+export const formatDateList = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString();
+};
+
+export const formatDateForm = (dateString) => {
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
 };

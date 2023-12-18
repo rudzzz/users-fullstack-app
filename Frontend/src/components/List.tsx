@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { fetchUserData, formatDate } from "../functions";
+import { fetchUserData, formatDateList } from "../functions";
 
 const List = () => {
     const {id}  = useParams();
@@ -35,7 +35,7 @@ const List = () => {
                     </li>
                     <li>
                         <b>Date of Birth:</b>
-                        {formatDate(dateOfBirth)}
+                        {formatDateList(dateOfBirth)}
                     </li>
                     <li>
                         <b>Phone Number:</b>
