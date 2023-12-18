@@ -12,8 +12,9 @@ function App() {
         <Navbar/>
         
         <Routes>
-            <Route exact path='/' element={<Home/>}/>
-            <Route exact path='/form' element={<Form/>}/>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/form' element={<Form/>}/>
+            <Route path='/form/:id' element={<Form/>}/>
         </Routes>
 
     </BrowserRouter>

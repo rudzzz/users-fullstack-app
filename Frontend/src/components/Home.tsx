@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [users, setUsers] = useState([]);
@@ -32,8 +33,12 @@ const Home = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td className='actionsBtn'>
-                                    <button className='viewBtn' type='button'>View</button>
-                                    <button className='editBtn' type='button'>Edit</button>
+                                    <Link className="viewBtn linkBtn navLink" to={'/list'}>
+                                        View
+                                    </Link>
+                                    <Link to={`/form/${user.id}`} className='linkBtn editBtn'>
+                                        Edit
+                                    </Link>
                                     <button className='deleteBtn' type='button'>Delete</button>
                                 </td>
                             </tr>

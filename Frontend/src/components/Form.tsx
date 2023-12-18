@@ -1,33 +1,57 @@
 import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Form = () => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const { id } = useParams();
 
     const [user, setUser] = useState({
         name: "",
         email: "",
     });
 
+    useEffect( () => {
+       const fetchUserData = async () => {
+            try{
+                if(id){
+                    const response = await axios.get(`http://localhost:8080/users/${id}`);
+                    setUser(response.data);
+                }
+            } catch(error){
+                alert(`Error fetching user data: ${error}`);
+            }
+       };
+
+       fetchUserData();
+
+    }, [id]);
+
     const {name, email} = user;
 
     const handleInputChange = (event) => {
         setUser(
-            {...user,[event.target.name]:event.target.value}
-        );
+            {
+                ...user,
+                [event.target.name]:event.target.value
+            });
     }
 
     const handleFormSubmit = async(event) => {
         event.preventDefault();
         console.log(event);
-        await axios.post("http://localhost:8080/users", user);
+        if(id){
+            await axios.put(`http://localhost:8080/users/${id}`, user);
+        }else {
+            await axios.post("http://localhost:8080/users", user);
+        }
         navigate("/");
     }
 
     return <>
         <div className="container">
-            <h1>Register User</h1>
+            <h1>{id ? "Edit User" : "Register User"}</h1>
+
             <form className="form" onSubmit={(event) => handleFormSubmit(event)}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>

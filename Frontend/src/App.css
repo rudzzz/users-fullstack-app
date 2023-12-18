@@ -58,12 +58,16 @@
   text-align: center;
 }
 
-.container button{
+.container button, .linkBtn{
   margin-right: 10px;
   padding: 11px;
   border: 1px solid #ddd;
   border-radius: 8px;
   color: #fff;
+}
+
+.linkBtn{
+  text-decoration: none;
 }
 
 .actionsBtn{
