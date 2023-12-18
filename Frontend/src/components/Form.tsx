@@ -6,9 +6,18 @@ const Form = () => {
     const navigate = useNavigate();
     const { id } = useParams();
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+
+        return date.toISOString().split("T")[0];
+    }
+
     const [user, setUser] = useState({
         name: "",
         email: "",
+        dateOfBirth: "",
+        phoneNumber: "",
+        gender: "",
     });
 
     useEffect( () => {
@@ -16,7 +25,10 @@ const Form = () => {
             try{
                 if(id){
                     const response = await axios.get(`http://localhost:8080/users/${id}`);
-                    setUser(response.data);
+                    setUser({
+                        ...response.data,
+                        dateOfBirth: formatDate(response.data.dateOfBirth),
+                    });
                 }
             } catch(error){
                 alert(`Error fetching user data: ${error}`);
@@ -27,7 +39,7 @@ const Form = () => {
 
     }, [id]);
 
-    const {name, email} = user;
+    const { name, email, dateOfBirth, phoneNumber, gender } = user;
 
     const handleInputChange = (event) => {
         setUser(
@@ -47,6 +59,8 @@ const Form = () => {
         }
         navigate("/");
     }
+
+    const today = new Date().toISOString().split("T")[0];
 
     return <>
         <div className="container">
@@ -73,6 +87,43 @@ const Form = () => {
                         required
                         onChange={(event) => handleInputChange(event)}
                     />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="dateOfBirth">Birth Date</label>
+                    <input value={dateOfBirth}
+                        type="date" 
+                        id="dateOfBirth"
+                        name="dateOfBirth"
+                        required
+                        max={today}
+                        onChange={(event) => handleInputChange(event)}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="phoneNumber">Phone Number</label>
+                    <input value={phoneNumber}
+                        type="tel" 
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        required
+                        onChange={(event) => handleInputChange(event)}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="phoneNumber">Gender</label>
+                    <select name="gender" 
+                        id="gender"
+                        value={gender}
+                        className="formSelect"
+                        onChange={(event) => handleInputChange(event)}
+                    >
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
                 </div>
 
                 <div className="formBtn">
