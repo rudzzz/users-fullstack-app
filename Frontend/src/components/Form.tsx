@@ -76,12 +76,8 @@ const Form = () => {
                 </div>
 
                 <div className="formBtn">
-                    <button type="button" className="cancel-btn">
-                        <Link className="navLink" to={'/'}>Cancel</Link>
-                    </button>
-                    <button className="save-btn">
-                        Save
-                    </button>
+                    <Link className="cancel-btn linkBtn navLink" to={'/'}>Cancel</Link>
+                    <button className="save-btn">Save</button>
                 </div>
 
             </form>

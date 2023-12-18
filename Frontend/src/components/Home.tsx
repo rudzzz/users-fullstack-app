@@ -41,7 +41,7 @@ const Home = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td className='actionsBtn'>
-                                    <Link className="viewBtn linkBtn navLink" to={'/list'}>
+                                    <Link className="viewBtn linkBtn navLink" to={`/list/${user.id}`}>
                                         View
                                     </Link>
                                     <Link to={`/form/${user.id}`} className='linkBtn editBtn'>
