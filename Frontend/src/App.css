@@ -66,6 +66,10 @@
   color: #fff;
 }
 
+.container button:hover{
+  cursor: pointer;
+}
+
 .linkBtn{
   text-decoration: none;
 }
