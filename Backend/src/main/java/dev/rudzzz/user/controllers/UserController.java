@@ -2,7 +2,9 @@ package dev.rudzzz.user.controllers;
 
 import dev.rudzzz.user.entities.User;
 import dev.rudzzz.user.repositories.UserRepository;
+import dev.rudzzz.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,17 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     public List<User> getAll(){
         return userRepository.findAll();
+    }
+
+    @GetMapping("/{pageNumber}/{pageSize}")
+    public Page<User> getAllPaginated(@PathVariable int pageNumber, @PathVariable int pageSize){
+        return userService.getUsersPaginated(pageNumber, pageSize);
     }
 
     @PostMapping
