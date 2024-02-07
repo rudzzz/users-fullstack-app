@@ -14,7 +14,9 @@ public class User {
     private String name;
     @Email
     private String email;
+    @Column(name = "date_of_birth")
     private Date dateOfBirth;
+    @Column(name = "phone_number")
     private Integer phoneNumber;
     private String gender;
 

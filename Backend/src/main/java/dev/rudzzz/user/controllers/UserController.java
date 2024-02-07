@@ -23,9 +23,15 @@ public class UserController {
     }
 
     @PostMapping
-    public User save(@RequestBody User user){
-        return userRepository.save(user);
+    public ResponseEntity<User> save(@RequestBody User user){
+        try {
+            User savedUser = userRepository.save(user);
+            return ResponseEntity.ok(savedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getById(@PathVariable Long id){
