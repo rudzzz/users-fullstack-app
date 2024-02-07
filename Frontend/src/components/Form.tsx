@@ -18,7 +18,6 @@ const Form = () => {
     useEffect( () => {
        const fetchData = async () => {
            const data = await fetchUserData(id);
-           console.log('dataaa: ', data);
            setUser({
             ...data,
             dateOfBirth: formatDateForm(data.dateOfBirth)
