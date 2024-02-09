@@ -177,3 +177,14 @@
   border-radius: 5px;
   box-sizing: border-box;
 }
+
+.pagination-controls span{
+  margin-right: 5px;
+}
+
+.pagination-controls button{
+  color: black;
+}
+.pagination-controls button:hover{
+  background-color: #b4b4b4;
+}
